@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Master Excel – From Zero to Work-Ready</title>
+    <style>
+        /* ── RESET & BASE ── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --green: #217346;
+            --green2: #1e6640;
+            --accent: #2dc76d;
+            --light: #e8f5ee;
+            --card: #ffffff;
+            --text: #1a1a2e;
+            --muted: #6b7280;
+            --border: #d1fae5;
+            --warn: #fef3c7;
+            --warn-b: #f59e0b;
+            --tip: #eff6ff;
+            --tip-b: #3b82f6;
+            --radius: 14px;
+            --shadow: 0 4px 24px rgba(33, 115, 70, .10);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f0faf4;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* ── NAV ── */
+        header {
+            background: linear-gradient(135deg, var(--green) 0%, #145a32 100%);
+            color: #fff;
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .18);
+        }
+
+        .navbar {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            font-size: 1.7rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, .85);
+            font-size: .82rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: background .2s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, .18);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, #1a5c38 0%, #21734610 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23217346" opacity=".05" x="10" y="10" width="30" height="30" rx="3"/><rect fill="%23217346" opacity=".05" x="50" y="10" width="30" height="30" rx="3"/><rect fill="%23217346" opacity=".05" x="10" y="50" width="30" height="30" rx="3"/><rect fill="%23217346" opacity=".05" x="50" y="50" width="30" height="30" rx="3"/></svg>');
+            background: linear-gradient(135deg, #145a32 0%, #217346 60%, #2dc76d 100%);
+            color: #fff;
+            padding: 80px 24px 90px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 620px;
+            margin: 0 auto 32px;
+            opacity: .92;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, .2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, .3);
+            color: #fff;
+            font-size: .82rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+        }
+
+        .btn-start {
+            display: inline-block;
+            background: #fff;
+            color: var(--green);
+            font-size: 1.05rem;
+            font-weight: 800;
+            padding: 14px 38px;
+            border-radius: 40px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, .18);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(0, 0, 0, .25);
+            text-decoration: none;
+        }
+
+        /* ── PROGRESS ── */
+        .progress-section {
+            max-width: 900px;
+            margin: -32px auto 0;
+            padding: 0 24px;
+        }
+
+        .progress-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px 32px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .progress-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            flex: 1 1 200px;
+        }
+
+        .progress-bar-wrap {
+            flex: 2 1 300px;
+        }
+
+        .prog-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: .82rem;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .prog-track {
+            background: #e5e7eb;
+            border-radius: 99px;
+            height: 10px;
+            overflow: hidden;
+        }
+
+        .prog-fill {
+            background: linear-gradient(90deg, var(--accent), var(--green));
+            height: 100%;
+            border-radius: 99px;
+            width: 0%;
+            transition: width 1.2s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        .prog-steps {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .step-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #d1d5db;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .7rem;
+            font-weight: 700;
+            color: #9ca3af;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .step-dot.done {
+            background: var(--green);
+            border-color: var(--green);
+            color: #fff;
+        }
+
+        .step-dot.active {
+            border-color: var(--accent);
+            color: var(--green);
+        }
+
+        /* ── MAIN LAYOUT ── */
+        .main-wrap {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 28px;
+        }
+
+        @media(max-width:800px) {
+            .main-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            position: sticky;
+            top: 84px;
+            height: fit-content;
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+        }
+
+        .sidebar h4 {
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: .88rem;
+            font-weight: 500;
+            color: var(--text);
+            transition: background .15s;
+        }
+
+        .sidebar ul li a:hover {
+            background: var(--light);
+            text-decoration: none;
+        }
+
+        .sidebar ul li a .snum {
+            min-width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--light);
+            color: var(--green);
+            font-size: .72rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ── LESSON CARD ── */
+        .lesson {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 36px 40px;
+            margin-bottom: 28px;
+            border-top: 4px solid var(--green);
+            scroll-margin-top: 90px;
+        }
+
+        @media(max-width:600px) {
+            .lesson {
+                padding: 24px 20px;
+            }
+        }
+
+        .lesson-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .lesson-icon {
+            font-size: 2.2rem;
+        }
+
+        .lesson-meta {
+            flex: 1;
+        }
+
+        .lesson-num {
+            font-size: .75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+        }
+
+        .lesson h2 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            margin-bottom: 0;
+        }
+
+        .lesson-time {
+            font-size: .78rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* ── CONTENT STYLES ── */
+        .lesson h3 {
+            font-size: 1.08rem;
+            font-weight: 700;
+            margin: 28px 0 10px;
+            color: var(--green2);
+        }
+
+        .lesson p {
+            margin-bottom: 14px;
+            color: #374151;
+        }
+
+        .lesson ul,
+        .lesson ol {
+            padding-left: 22px;
+            margin-bottom: 14px;
+            color: #374151;
+        }
+
+        .lesson li {
+            margin-bottom: 6px;
+        }
+
+        /* highlight key */
+        kbd {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-bottom: 3px solid #d1d5db;
+            border-radius: 5px;
+            padding: 2px 8px;
+            font-size: .82rem;
+            font-family: monospace;
+            white-space: nowrap;
+        }
+
+        .formula {
+            display: block;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid var(--green);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-family: 'Courier New', monospace;
+            font-size: .95rem;
+            color: #065f46;
+            margin: 10px 0 16px;
+        }
+
+        /* tip / warning boxes */
+        .tip,
+        .warn,
+        .example-box {
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .tip {
+            background: var(--tip);
+            border-left: 4px solid var(--tip-b);
+        }
+
+        .warn {
+            background: var(--warn);
+            border-left: 4px solid var(--warn-b);
+        }
+
+        .example-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .tip-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .tip p,
+        .warn p,
+        .example-box p {
+            margin: 0;
+            font-size: .92rem;
+        }
+
+        /* table */
+        .excel-table-wrap {
+            overflow-x: auto;
+            margin: 16px 0;
+            border-radius: 10px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .88rem;
+        }
+
+        thead tr {
+            background: var(--green);
+            color: #fff;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f9fafb;
+        }
+
+        tbody tr:hover {
+            background: var(--light);
+        }
+
+        /* shortcut grid */
+        .shortcut-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .shortcut-item {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .shortcut-item kbd {
+            font-size: .78rem;
+        }
+
+        .shortcut-item span {
+            font-size: .84rem;
+            color: #374151;
+        }
+
+        /* formula cards */
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+            margin: 16px 0;
+        }
+
+        .formula-card {
+            border: 1px solid #d1fae5;
+            border-radius: 10px;
+            padding: 16px;
+            background: linear-gradient(135deg, #f0fdf4, #fff);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .formula-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(33, 115, 70, .12);
+        }
+
+        .formula-card .fc-name {
+            font-weight: 800;
+            color: var(--green);
+            font-size: 1rem;
+        }
+
+        .formula-card .fc-syntax {
+            font-family: monospace;
+            font-size: .82rem;
+            color: #065f46;
+            background: #ecfdf5;
+            border-radius: 5px;
+            padding: 4px 8px;
+            display: inline-block;
+            margin: 6px 0;
+        }
+
+        .formula-card .fc-desc {
+            font-size: .84rem;
+            color: #4b5563;
+        }
+
+        /* steps visual */
+        .steps-visual {
+            counter-reset: sv;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .step-item::before {
+            counter-increment: sv;
+            content: counter(sv);
+            min-width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--green);
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-item p {
+            margin: 0;
+            font-size: .9rem;
+        }
+
+        /* quiz */
+        .quiz-box {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin-top: 28px;
+            color: #fff;
+        }
+
+        .quiz-box h3 {
+            font-size: 1.1rem;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quiz-q {
+            font-size: .95rem;
+            margin-bottom: 14px;
+            font-weight: 500;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .quiz-opt {
+            background: rgba(255, 255, 255, .08);
+            border: 1.5px solid rgba(255, 255, 255, .15);
+            border-radius: 8px;
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: .9rem;
+            color: #e5e7eb;
+            transition: all .18s;
+            text-align: left;
+        }
+
+        .quiz-opt:hover {
+            background: rgba(255, 255, 255, .15);
+            border-color: var(--accent);
+        }
+
+        .quiz-opt.correct {
+            background: rgba(45, 199, 109, .25);
+            border-color: var(--accent);
+            color: #a7f3d0;
+        }
+
+        .quiz-opt.wrong {
+            background: rgba(239, 68, 68, .2);
+            border-color: #f87171;
+            color: #fca5a5;
+        }
+
+        .quiz-result {
+            display: none;
+            margin-top: 12px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: .9rem;
+            font-weight: 600;
+        }
+
+        .quiz-result.show {
+            display: block;
+        }
+
+        .quiz-result.pass {
+            background: rgba(45, 199, 109, .2);
+            color: #a7f3d0;
+        }
+
+        .quiz-result.fail {
+            background: rgba(239, 68, 68, .15);
+            color: #fca5a5;
+        }
+
+        /* done button */
+        .mark-done-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 24px;
+            font-size: .9rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 24px;
+            transition: background .2s, transform .2s;
+        }
+
+        .mark-done-btn:hover {
+            background: var(--green2);
+            transform: translateY(-1px);
+        }
+
+        .mark-done-btn.done-state {
+            background: #14532d;
+            cursor: default;
+        }
+
+        /* certificate */
+        #certificate {
+            display: none;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 3px solid var(--green);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 8px 40px rgba(33, 115, 70, .15);
+        }
+
+        #certificate h2 {
+            font-size: 2rem;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        #certificate .cert-name {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--green2);
+            margin: 12px 0;
+        }
+
+        #certificate p {
+            color: #374151;
+        }
+
+        /* footer */
+        footer {
+            background: var(--green);
+            color: rgba(255, 255, 255, .8);
+            text-align: center;
+            padding: 28px;
+            font-size: .85rem;
+            margin-top: 60px;
+        }
+
+        footer strong {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══ HEADER ══ -->
+    <header>
+        <div class="navbar">
+            <div class="logo"><span>📗</span> Excel Mastery</div>
+            <nav>
+                <a href="#lesson1">Basics</a>
+                <a href="#lesson2">Formulas</a>
+                <a href="#lesson3">Formatting</a>
+                <a href="#lesson4">Data</a>
+                <a href="#lesson5">Charts</a>
+                <a href="#lesson6">Shortcuts</a>
+                <a href="#lesson7">Practice</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ══ HERO ══ -->
+    <section class="hero">
+        <h1>Master Microsoft Excel<br>From Zero to Work-Ready 🚀</h1>
+        <p>A complete, beginner-friendly guide built especially for you. No experience needed — just follow each lesson
+            at your own pace and you'll be job-ready in no time!</p>
+        <div class="hero-badges">
+            <span class="badge">✅ 7 Lessons</span>
+            <span class="badge">📝 Quizzes &amp; Practice</span>
+            <span class="badge">🏆 Certificate at the End</span>
+            <span class="badge">🕐 ~3 Hours Total</span>
+        </div>
+        <a href="#lesson1" class="btn-start">Start Learning →</a>
+    </section>
+
+    <!-- ══ PROGRESS TRACKER ══ -->
+    <div class="progress-section">
+        <div class="progress-card">
+            <h3>📊 Your Learning Progress</h3>
+            <div class="progress-bar-wrap">
+                <div class="prog-label"><span>Overall Progress</span><span id="pct">0% Complete</span></div>
+                <div class="prog-track">
+                    <div class="prog-fill" id="progFill"></div>
+                </div>
+                <div class="prog-steps" id="progDots"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ MAIN ══ -->
+    <div class="main-wrap">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h4>Lessons</h4>
+            <ul>
+                <li><a href="#lesson1"><span class="snum">1</span> Excel Basics</a></li>
+                <li><a href="#lesson2"><span class="snum">2</span> Formulas &amp; Functions</a></li>
+                <li><a href="#lesson3"><span class="snum">3</span> Formatting</a></li>
+                <li><a href="#lesson4"><span class="snum">4</span> Sorting &amp; Filtering</a></li>
+                <li><a href="#lesson5"><span class="snum">5</span> Charts &amp; Graphs</a></li>
+                <li><a href="#lesson6"><span class="snum">6</span> Shortcuts &amp; Tips</a></li>
+                <li><a href="#lesson7"><span class="snum">7</span> Real-World Practice</a></li>
+            </ul>
+        </aside>
+
+        <!-- ══ CONTENT ══ -->
+        <main>
+
+            <!-- ───────────────────────────────── LESSON 1 ── -->
+            <article class="lesson" id="lesson1">
+                <div class="lesson-header">
+                    <div class="lesson-icon">📋</div>
+                    <div class="lesson-meta">
+                        <div class="lesson-num">Lesson 1</div>
+                        <h2>Understanding the Excel Interface</h2>
+                        <div class="lesson-time">⏱ ~20 minutes</div>
+                    </div>
+                </div>
+
+                <p>Microsoft Excel is a <strong>spreadsheet program</strong> — think of it as a giant, smart table where
+                    you can store numbers, text, and calculations. It is used in almost every office job, from admin
+                    work to accounting.</p>
+
+                <h3>🖥️ The Excel Screen – What You See</h3>
+                <div class="excel-table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Screen Part</th>
+                                <th>What It Does</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ribbon</strong></td>
+                                <td>The toolbar at the top with tabs like Home, Insert, Formulas, etc.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cell</strong></td>
+                                <td>One single box in the spreadsheet (e.g., A1, B3)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Column</strong></td>
+                                <td>Vertical line of cells labeled A, B, C… going across</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Row</strong></td>
+                                <td>Horizontal line of cells labeled 1, 2, 3… going down</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Name Box</strong></td>
+                                <td>Top-left box that tells you which cell you are in</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Formula Bar</strong></td>
+                                <td>Shows what is typed inside the selected cell</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sheet Tabs</strong></td>
+                                <td>Tabs at the bottom – each tab is one sheet/page</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Workbook</strong></td>
+                                <td>The entire Excel file (can contain many sheets)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>🖱️ How to Navigate Cells</h3>
+                <div class="steps-visual">
+                    <div class="step-item">
+                        <p>Click any cell to <strong>select</strong> it. You will see its name appear in the Name Box
+                            (top-left).</p>
+                    </div>
+                    <div class="step-item">
+                        <p>Press <kbd>Tab</kbd> to move <strong>right</strong>, or <kbd>Enter</kbd> to move
+                            <strong>down</strong> to the next cell.</p>
+                    </div>
+                    <div class="step-item">
+                        <p>Use <kbd>Arrow Keys</kbd> ← ↑ → ↓ to move one cell at a time in any direction.</p>
+                    </div>
+                    <div class="step-item">
+                        <p>Press <kbd>Ctrl</kbd> + <kbd>Home</kbd> to jump back to cell <strong>A1</strong> (the very
+                            beginning).</p>
+                    </div>
+                    <div class="step-item">
+                        <p>Press <kbd>Ctrl</kbd> + <kbd>End</kbd> to jump to the <strong>last used cell</strong> in your
+                            sheet.</p>
+                    </div>
+                </div>
+
+                <h3>✏️ Entering & Editing Data</h3>
+                <p>Simply click on a cell and start typing. Press <kbd>Enter</kbd> to confirm. To <strong>edit</strong>
+                    a cell, double-click it or press <kbd>F2</kbd>.</p>
+                <div class="tip">
+                    <span class="tip-icon">💡</span>
+                    <p>To <strong>delete</strong> the content of a cell, click it and press <kbd>Delete</kbd>. To delete
+                        the whole row, right-click the row number → <em>Delete</em>.</p>
+                </div>
+
+                <h3>💾 Saving Your Work</h3>
+                <ul>
+                    <li>Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save at any time — do this often!</li>
+                    <li>First-time save: choose <em>Save As</em> → pick a folder → type a file name → click
+                        <strong>Save</strong>.</li>
+                    <li>Format: Always save as <strong>.xlsx</strong> (Excel Workbook) unless told otherwise.</li>
+                </ul>
+
+                <div class="warn">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Important:</strong> Always save your file before closing. Excel will ask "Do you want to
+                        save changes?" — always click <strong>Save</strong>!</p>
+                </div>
+
+                <!-- Quiz -->
+                <div class="quiz-box">
+                    <h3>🧠 Quick Check – Lesson 1</h3>
+                    <div class="quiz-q">What is the name of the bar at the very top of Excel that shows tabs like Home,
+                        Insert, and Formulas?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Formula Bar</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, true)">The Ribbon</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Name Box</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Status Bar</button>
+                    </div>
+                    <div class="quiz-result" id="qr0"></div>
+                </div>
+
+                <button class="mark-done-btn" onclick="markDone(this, 1)">✔ Mark Lesson 1 Complete</button>
+            </article>
+
+            <!-- ───────────────────────────────── LESSON 2 ── -->
+            <article class="lesson" id="lesson2">
+                <div class="lesson-header">
+                    <div class="lesson-icon">🔢</div>
+                    <div class="lesson-meta">
+                        <div class="lesson-num">Lesson 2</div>
+                        <h2>Formulas &amp; Functions</h2>
+                        <div class="lesson-time">⏱ ~35 minutes</div>
+                    </div>
+                </div>
+
+                <p>Formulas are what make Excel <em>powerful</em>. Instead of using a calculator, you let Excel do the
+                    math automatically. Every formula starts with an <strong>equal sign =</strong>.</p>
+
+                <h3>➕ Basic Math Formulas</h3>
+                <div class="excel-table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Operation</th>
+                                <th>Symbol</th>
+                                <th>Example</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Addition</td>
+                                <td><code>+</code></td>
+                                <td>=10+5 or =A1+B1</td>
+                                <td>15</td>
+                            </tr>
+                            <tr>
+                                <td>Subtraction</td>
+                                <td><code>-</code></td>
+                                <td>=10-3</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>Multiplication</td>
+                                <td><code>*</code></td>
+                                <td>=4*6</td>
+                                <td>24</td>
+                            </tr>
+                            <tr>
+                                <td>Division</td>
+                                <td><code>/</code></td>
+                                <td>=20/4</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>Percentage</td>
+                                <td><code>%</code></td>
+                                <td>=500*10%</td>
+                                <td>50</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>⚡ Essential Functions You Must Know</h3>
+                <div class="formula-grid">
+                    <div class="formula-card">
+                        <div class="fc-name">SUM</div>
+                        <div class="fc-syntax">=SUM(A1:A10)</div>
+                        <div class="fc-desc">Adds up all values in a range. Most-used function in any workplace.</div>
+                    </div>
+                    <div class="formula-card">
+                        <div class="fc-name">AVERAGE</div>
+                        <div class="fc-syntax">=AVERAGE(B1:B10)</div>
+                        <div class="fc-desc">Calculates the average (mean) of a group of numbers.</div>
+                    </div>
+                    <div class="formula-card">
+                        <div class="fc-name">COUNT</div>
+                        <div class="fc-syntax">=COUNT(A1:A20)</div>
+                        <div class="fc-desc">Counts how many cells contain numbers.</div>
+                    </div>
+                    <div class="formula-card">
+                        <div class="fc-name">COUNTA</div>
+                        <div class="fc-syntax">=COUNTA(A1:A20)</div>
+                        <div class="fc-desc">Counts all non-empty cells (text + numbers).</div>
+                    </div>
+                    <div class="formula-card">
+                        <div class="fc-name">MAX</div>
+                        <div class="fc-syntax">=MAX(C1:C50)</div>
+                        <div class="fc-desc">Finds the highest number in a range.</div>
+                    </div>
+                    <div class="formula-card">
+                        <div class="fc-name">MIN</div>
+                        <div class="fc-syntax">=MIN(C1:C50)</div>
+                        <div class="fc-desc">Finds the lowest number in a range.</div>
+                    </div>
+                    <div class="formula-card">
+                        <div class="fc-name">IF</div>
+                        <div class="fc-syntax">=IF(A1>50,"Pass","Fail")</div>
+                        <div class="fc-desc">Checks a condition and returns one value if TRUE, another if FALSE.</div>
+                    </div>
+                    <div class="formula-card">
+                        <div class="fc-name">VLOOKUP</div>
+                        <div class="fc-syntax">=VLOOKUP(E2,A:C,2,0)</div>
+                        <div class="fc-desc">Searches for a value and returns related data from another column.</div>
+                    </div>
+                    <div class="formula-card">
+                        <div class="fc-name">CONCATENATE</div>
+                        <div class="fc-syntax">=A1&" "&B1</div>
+                        <div class="fc-desc">Joins text from two or more cells into one.</div>
+                    </div>
+                    <div class="formula-card">
+                        <div class="fc-name">TODAY</div>
+                        <div class="fc-syntax">=TODAY()</div>
+                        <div class="fc-desc">Shows today's date automatically, updates every day.</div>
+                    </div>
+                    <div class="formula-card">
+                        <div class="fc-name">TRIM</div>
+                        <div class="fc-syntax">=TRIM(A1)</div>
+                        <div class="fc-desc">Removes extra spaces from text — very useful for cleaning data.</div>
+                    </div>
+                    <div class="formula-card">
+                        <div class="fc-name">UPPER / LOWER</div>
+                        <div class="fc-syntax">=UPPER(A1)</div>
+                        <div class="fc-desc">Converts text to ALL CAPS or all lowercase.</div>
+                    </div>
+                </div>
+
+                <h3>📌 How to Read a Cell Range</h3>
+                <p>A <strong>range</strong> is a group of cells. You write it as <code>FirstCell:LastCell</code>.</p>
+                <div class="example-box">
+                    <span class="tip-icon">📌</span>
+                    <p><code>A1:A10</code> = cells A1 down to A10 (10 cells in one column)<br>
+                        <code>A1:D1</code> = cells A1 across to D1 (4 cells in one row)<br>
+                        <code>A1:D10</code> = a block of 40 cells (4 columns × 10 rows)
+                    </p>
+                </div>
+
+                <h3>🧮 Practical Example – Monthly Budget</h3>
+                <p>Imagine you have these values:</p>
+                <span class="formula">A1=Rent | A2=Food | A3=Transport | B1=8000 | B2=3500 | B3=1200</span>
+                <p>To get the <strong>Total Expenses</strong> in B4:</p>
+                <span class="formula">=SUM(B1:B3) → result: 12,700</span>
+                <p>To get the <strong>Average Monthly Cost</strong> in B5:</p>
+                <span class="formula">=AVERAGE(B1:B3) → result: 4,233.33</span>
+
+                <div class="tip">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Pro Tip:</strong> After typing a formula, you can copy it to other cells. Select the
+                        cell, hover over the small <strong>green square</strong> at the bottom-right corner, then drag
+                        down or across — Excel will auto-adjust the formula for each row!</p>
+                </div>
+
+                <!-- Quiz -->
+                <div class="quiz-box">
+                    <h3>🧠 Quick Check – Lesson 2</h3>
+                    <div class="quiz-q">Which formula would you use to add all numbers from cell B2 to B20?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">=ADD(B2:B20)</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, true)">=SUM(B2:B20)</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">=TOTAL(B2,B20)</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">=COUNT(B2:B20)</button>
+                    </div>
+                    <div class="quiz-result" id="qr1"></div>
+                </div>
+
+                <button class="mark-done-btn" onclick="markDone(this, 2)">✔ Mark Lesson 2 Complete</button>
+            </article>
+
+            <!-- ───────────────────────────────── LESSON 3 ── -->
+            <article class="lesson" id="lesson3">
+                <div class="lesson-header">
+                    <div class="lesson-icon">🎨</div>
+                    <div class="lesson-meta">
+                        <div class="lesson-num">Lesson 3</div>
+                        <h2>Formatting Your Spreadsheet</h2>
+                        <div class="lesson-time">⏱ ~20 minutes</div>
+                    </div>
+                </div>
+
+                <p>A well-formatted spreadsheet looks <strong>professional</strong> and is easy to read. Employers
+                    notice when data is clean and organized.</p>
+
+                <h3>🅰️ Text Formatting</h3>
+                <div class="shortcut-grid">
+                    <div class="shortcut-item"><kbd>Ctrl+B</kbd><span>Bold text</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+I</kbd><span>Italic text</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+U</kbd><span>Underline text</span></div>
+                    <div class="shortcut-item"><kbd>Alt+H→FC</kbd><span>Change font color</span></div>
+                    <div class="shortcut-item"><kbd>Alt+H→H</kbd><span>Highlight cell color</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+1</kbd><span>Open Format Cells dialog</span></div>
+                </div>
+
+                <h3>🔢 Number Formatting</h3>
+                <p>This controls HOW numbers are displayed. Select a cell or range, then go to <strong>Home →
+                        Number</strong> group:</p>
+                <div class="excel-table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Format</th>
+                                <th>How it Looks</th>
+                                <th>Good For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>General</td>
+                                <td>1234.5</td>
+                                <td>Default — no special format</td>
+                            </tr>
+                            <tr>
+                                <td>Number</td>
+                                <td>1,234.50</td>
+                                <td>Regular numbers with decimals</td>
+                            </tr>
+                            <tr>
+                                <td>Currency</td>
+                                <td>₱1,234.50 or $1,234.50</td>
+                                <td>Money amounts</td>
+                            </tr>
+                            <tr>
+                                <td>Percentage</td>
+                                <td>75%</td>
+                                <td>Rates, scores, discounts</td>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td>01/15/2025</td>
+                                <td>Dates in reports</td>
+                            </tr>
+                            <tr>
+                                <td>Text</td>
+                                <td>01234</td>
+                                <td>ID numbers that start with 0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>📐 Column Width &amp; Row Height</h3>
+                <div class="steps-visual">
+                    <div class="step-item">
+                        <p>Hover over the <strong>line between two column letters</strong> (e.g., between A and B) until
+                            you see a double arrow ↔.</p>
+                    </div>
+                    <div class="step-item">
+                        <p><strong>Drag</strong> to resize manually, or <strong>double-click</strong> to auto-fit the
+                            column to its content.</p>
+                    </div>
+                    <div class="step-item">
+                        <p>To resize <strong>all columns at once</strong>: click the top-left corner (select all) →
+                            double-click any column border.</p>
+                    </div>
+                </div>
+
+                <h3>🔲 Borders &amp; Alignment</h3>
+                <ul>
+                    <li>Select cells → <strong>Home → Borders</strong> → choose "All Borders" to add grid lines</li>
+                    <li>Use <strong>Merge &amp; Center</strong> to combine cells for a title row (Home → Merge &amp;
+                        Center)</li>
+                    <li>Use <strong>Wrap Text</strong> to show long text on multiple lines within one cell</li>
+                    <li>Align text: Left, Center, or Right using the alignment buttons in Home tab</li>
+                </ul>
+
+                <div class="tip">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Professional tip:</strong> Make your header row bold, give it a background color (like
+                        dark green or blue), and change the font color to white. This makes reports look very polished.
+                    </p>
+                </div>
+
+                <!-- Quiz -->
+                <div class="quiz-box">
+                    <h3>🧠 Quick Check – Lesson 3</h3>
+                    <div class="quiz-q">What keyboard shortcut makes selected text Bold in Excel?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Ctrl + F</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Ctrl + T</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, true)">Ctrl + B</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Ctrl + D</button>
+                    </div>
+                    <div class="quiz-result" id="qr2"></div>
+                </div>
+
+                <button class="mark-done-btn" onclick="markDone(this, 3)">✔ Mark Lesson 3 Complete</button>
+            </article>
+
+            <!-- ───────────────────────────────── LESSON 4 ── -->
+            <article class="lesson" id="lesson4">
+                <div class="lesson-header">
+                    <div class="lesson-icon">🔍</div>
+                    <div class="lesson-meta">
+                        <div class="lesson-num">Lesson 4</div>
+                        <h2>Sorting &amp; Filtering Data</h2>
+                        <div class="lesson-time">⏱ ~20 minutes</div>
+                    </div>
+                </div>
+
+                <p>When you have lots of data (like a list of employees or products), sorting and filtering help you
+                    find and organize information quickly — a skill every employer expects.</p>
+
+                <h3>↕️ Sorting Data</h3>
+                <div class="steps-visual">
+                    <div class="step-item">
+                        <p>Click any cell inside the column you want to sort by.</p>
+                    </div>
+                    <div class="step-item">
+                        <p>Go to <strong>Home → Sort &amp; Filter</strong> or the <strong>Data tab</strong>.</p>
+                    </div>
+                    <div class="step-item">
+                        <p>Choose <strong>"Sort A to Z"</strong> (ascending) or <strong>"Sort Z to A"</strong>
+                            (descending).</p>
+                    </div>
+                    <div class="step-item">
+                        <p>For numbers: "Sort Smallest to Largest" or "Sort Largest to Smallest".</p>
+                    </div>
+                    <div class="step-item">
+                        <p>For sorting by multiple columns (e.g., by Department, then by Name): use <strong>Data → Sort
+                                → Add Level</strong>.</p>
+                    </div>
+                </div>
+
+                <h3>🔽 Filtering Data</h3>
+                <p>A filter lets you <strong>show only the rows you want</strong> and hide the rest temporarily.</p>
+                <div class="steps-visual">
+                    <div class="step-item">
+                        <p>Click any cell in your data table (make sure your first row has headers like "Name", "Age",
+                            "Department").</p>
+                    </div>
+                    <div class="step-item">
+                        <p>Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> — or go to <strong>Data →
+                                Filter</strong>. Small dropdown arrows will appear in the header row.</p>
+                    </div>
+                    <div class="step-item">
+                        <p>Click the dropdown arrow on any column. Uncheck items you DON'T want to see.</p>
+                    </div>
+                    <div class="step-item">
+                        <p>To <strong>remove the filter</strong> and show all rows again, press <kbd>Ctrl</kbd> +
+                            <kbd>Shift</kbd> + <kbd>L</kbd> again.</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <span class="tip-icon">📋</span>
+                    <p><strong>Real Work Example:</strong> You have a list of 200 employees. Your boss asks "Show me
+                        only the employees in the Sales department." You just apply a filter on the Department column —
+                        done in 5 seconds!</p>
+                </div>
+
+                <h3>🔎 Find &amp; Replace</h3>
+                <ul>
+                    <li>Press <kbd>Ctrl</kbd> + <kbd>F</kbd> to <strong>Find</strong> any word or number in the sheet
+                    </li>
+                    <li>Press <kbd>Ctrl</kbd> + <kbd>H</kbd> to <strong>Replace</strong> text (e.g., change all "Dept"
+                        to "Department")</li>
+                </ul>
+
+                <!-- Quiz -->
+                <div class="quiz-box">
+                    <h3>🧠 Quick Check – Lesson 4</h3>
+                    <div class="quiz-q">What shortcut key turns on/off the Filter dropdown arrows in Excel?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Ctrl + F</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Ctrl + Alt + F</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, true)">Ctrl + Shift + L</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Ctrl + D</button>
+                    </div>
+                    <div class="quiz-result" id="qr3"></div>
+                </div>
+
+                <button class="mark-done-btn" onclick="markDone(this, 4)">✔ Mark Lesson 4 Complete</button>
+            </article>
+
+            <!-- ───────────────────────────────── LESSON 5 ── -->
+            <article class="lesson" id="lesson5">
+                <div class="lesson-header">
+                    <div class="lesson-icon">📊</div>
+                    <div class="lesson-meta">
+                        <div class="lesson-num">Lesson 5</div>
+                        <h2>Creating Charts &amp; Graphs</h2>
+                        <div class="lesson-time">⏱ ~25 minutes</div>
+                    </div>
+                </div>
+
+                <p>Charts turn rows of numbers into <strong>visual stories</strong>. A good chart can explain in one
+                    second what 100 rows of data cannot. This is a big skill in presentations and reports.</p>
+
+                <h3>📈 Types of Charts &amp; When to Use Them</h3>
+                <div class="excel-table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Chart Type</th>
+                                <th>Best Used For</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>📊 Bar / Column</td>
+                                <td>Comparing different items side by side</td>
+                                <td>Sales by product, scores by student</td>
+                            </tr>
+                            <tr>
+                                <td>📈 Line</td>
+                                <td>Showing changes over time</td>
+                                <td>Monthly revenue, daily temperature</td>
+                            </tr>
+                            <tr>
+                                <td>🥧 Pie</td>
+                                <td>Showing parts of a whole (percentages)</td>
+                                <td>Budget breakdown, market share</td>
+                            </tr>
+                            <tr>
+                                <td>📉 Area</td>
+                                <td>Volume over time (like line but filled)</td>
+                                <td>Cumulative sales over months</td>
+                            </tr>
+                            <tr>
+                                <td>Scatter</td>
+                                <td>Relationship between two sets of numbers</td>
+                                <td>Height vs weight data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>🛠️ How to Create a Chart</h3>
+                <div class="steps-visual">
+                    <div class="step-item">
+                        <p><strong>Select your data</strong> including the headers (e.g., highlight A1:B6 which contains
+                            month names and sales numbers).</p>
+                    </div>
+                    <div class="step-item">
+                        <p>Go to the <strong>Insert tab</strong> on the Ribbon.</p>
+                    </div>
+                    <div class="step-item">
+                        <p>In the <strong>Charts group</strong>, click on the chart type you want (e.g., Column Chart).
+                        </p>
+                    </div>
+                    <div class="step-item">
+                        <p>The chart appears on your sheet! You can <strong>drag it</strong> to reposition it.</p>
+                    </div>
+                    <div class="step-item">
+                        <p>Click on the chart to see the <strong>Chart Tools</strong> tabs (Design &amp; Format) appear
+                            in the Ribbon for customization.</p>
+                    </div>
+                </div>
+
+                <h3>✏️ Customizing Your Chart</h3>
+                <ul>
+                    <li><strong>Chart Title:</strong> Click the title text inside the chart and type a new name</li>
+                    <li><strong>Colors:</strong> Chart Design tab → Change Colors</li>
+                    <li><strong>Chart Style:</strong> Chart Design tab → pick a Style from the gallery</li>
+                    <li><strong>Add Data Labels:</strong> Right-click the bars/line → "Add Data Labels" to show numbers
+                        on the chart</li>
+                    <li><strong>Move to New Sheet:</strong> Chart Design → Move Chart → "New sheet" for a full-page
+                        chart</li>
+                </ul>
+
+                <div class="tip">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Recommended Chart Tip:</strong> For most workplace reports, use a <strong>Column or Bar
+                            chart</strong>. They are easy to read and very professional. Avoid using 3D charts — they
+                        can be hard to read accurately.</p>
+                </div>
+
+                <!-- Quiz -->
+                <div class="quiz-box">
+                    <h3>🧠 Quick Check – Lesson 5</h3>
+                    <div class="quiz-q">You want to show how company sales changed every month for one year. Which chart
+                        type is the BEST choice?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Pie Chart</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, true)">Line Chart</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Scatter Chart</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Doughnut Chart</button>
+                    </div>
+                    <div class="quiz-result" id="qr4"></div>
+                </div>
+
+                <button class="mark-done-btn" onclick="markDone(this, 5)">✔ Mark Lesson 5 Complete</button>
+            </article>
+
+            <!-- ───────────────────────────────── LESSON 6 ── -->
+            <article class="lesson" id="lesson6">
+                <div class="lesson-header">
+                    <div class="lesson-icon">⚡</div>
+                    <div class="lesson-meta">
+                        <div class="lesson-num">Lesson 6</div>
+                        <h2>Power Shortcuts &amp; Pro Tips</h2>
+                        <div class="lesson-time">⏱ ~15 minutes</div>
+                    </div>
+                </div>
+
+                <p>Knowing shortcuts makes you <strong>2–3× faster</strong> than other people. In the workplace, speed
+                    and accuracy are both important. Practice these until they are natural.</p>
+
+                <h3>⌨️ Must-Know Keyboard Shortcuts</h3>
+                <div class="shortcut-grid">
+                    <div class="shortcut-item"><kbd>Ctrl+C</kbd><span>Copy</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+X</kbd><span>Cut</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+V</kbd><span>Paste</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+Z</kbd><span>Undo last action</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+Y</kbd><span>Redo (undo the undo)</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+S</kbd><span>Save file</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+P</kbd><span>Print</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+A</kbd><span>Select all cells</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+F</kbd><span>Find something</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+H</kbd><span>Find and Replace</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+Home</kbd><span>Go to cell A1</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+End</kbd><span>Go to last used cell</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+↓</kbd><span>Jump to end of data column</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+Shift+L</kbd><span>Toggle AutoFilter</span></div>
+                    <div class="shortcut-item"><kbd>Alt+Enter</kbd><span>New line inside same cell</span></div>
+                    <div class="shortcut-item"><kbd>F2</kbd><span>Edit selected cell</span></div>
+                    <div class="shortcut-item"><kbd>F4</kbd><span>Repeat last action</span></div>
+                    <div class="shortcut-item"><kbd>Delete</kbd><span>Clear cell content</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+Shift+$</kbd><span>Apply currency format</span></div>
+                    <div class="shortcut-item"><kbd>Ctrl+Shift+%</kbd><span>Apply percentage format</span></div>
+                </div>
+
+                <h3>🏆 Pro Tips for the Workplace</h3>
+                <ul>
+                    <li><strong>Freeze Panes:</strong> Keep your header row visible while scrolling. Go to View → Freeze
+                        Panes → Freeze Top Row.</li>
+                    <li><strong>Password Protect:</strong> File → Info → Protect Workbook → Encrypt with Password. Use
+                        this for sensitive data.</li>
+                    <li><strong>AutoFill:</strong> Type "January" → press Enter → go back → drag the green square down.
+                        Excel fills in February, March, etc. automatically!</li>
+                    <li><strong>Flash Fill:</strong> Type a pattern in one cell, press <kbd>Ctrl</kbd>+<kbd>E</kbd> and
+                        Excel detects the pattern and fills the rest.</li>
+                    <li><strong>Name a Range:</strong> Select cells → click the Name Box → type a name (e.g., "Sales") →
+                        Enter. Now you can write =SUM(Sales) instead of =SUM(B2:B100).</li>
+                    <li><strong>Print Setup:</strong> Before printing, go to Page Layout tab → set Orientation
+                        (Portrait/Landscape) and check "Fit Sheet on One Page" in the Scale to Fit section.</li>
+                </ul>
+
+                <div class="warn">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Common Mistake:</strong> Never type numbers as text (with a space before them). If a cell
+                        shows a green triangle in the corner, it means there's a warning — right-click and "Convert to
+                        Number" to fix it.</p>
+                </div>
+
+                <!-- Quiz -->
+                <div class="quiz-box">
+                    <h3>🧠 Quick Check – Lesson 6</h3>
+                    <div class="quiz-q">Which shortcut key do you press to UNDO a mistake in Excel?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Ctrl + Y</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, true)">Ctrl + Z</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Ctrl + X</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Ctrl + B</button>
+                    </div>
+                    <div class="quiz-result" id="qr5"></div>
+                </div>
+
+                <button class="mark-done-btn" onclick="markDone(this, 6)">✔ Mark Lesson 6 Complete</button>
+            </article>
+
+            <!-- ───────────────────────────────── LESSON 7 ── -->
+            <article class="lesson" id="lesson7">
+                <div class="lesson-header">
+                    <div class="lesson-icon">💼</div>
+                    <div class="lesson-meta">
+                        <div class="lesson-num">Lesson 7</div>
+                        <h2>Real-World Practice Exercises</h2>
+                        <div class="lesson-time">⏱ ~40 minutes</div>
+                    </div>
+                </div>
+
+                <p>The best way to truly learn Excel is by <strong>doing real tasks</strong>. Below are three hands-on
+                    exercises that simulate actual workplace scenarios. Open Excel and try each one!</p>
+
+                <h3>📝 Exercise 1 – Employee Attendance Tracker</h3>
+                <div class="example-box">
+                    <span class="tip-icon">📋</span>
+                    <div>
+                        <p><strong>Task:</strong> Create a simple employee attendance sheet.</p>
+                        <p style="margin-top:8px"><strong>Steps:</strong></p>
+                        <ol style="margin:8px 0 0 20px; font-size:.9rem;">
+                            <li>In Row 1, type headers:
+                                <code>Employee Name | Mon | Tue | Wed | Thu | Fri | Total Days Present</code></li>
+                            <li>Add 5 employee names in column A (rows 2–6)</li>
+                            <li>Fill in <code>1</code> for Present and <code>0</code> for Absent for each day</li>
+                            <li>In column G (Total Days Present), use <strong>=SUM(B2:F2)</strong> for each employee
+                            </li>
+                            <li>Format the header row: Bold, green background, white text</li>
+                            <li>Add borders to all cells (Home → All Borders)</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h3>📝 Exercise 2 – Monthly Budget Planner</h3>
+                <div class="example-box">
+                    <span class="tip-icon">💰</span>
+                    <div>
+                        <p><strong>Task:</strong> Build a personal monthly budget tracker.</p>
+                        <ol style="margin:8px 0 0 20px; font-size:.9rem;">
+                            <li>Column A: Category names (Salary, Rent, Groceries, Transport, Utilities, Savings,
+                                Entertainment)</li>
+                            <li>Column B: Amount (in ₱ or your currency)</li>
+                            <li>In a "Total Expenses" row, use <strong>=SUM()</strong> on your expense rows</li>
+                            <li>In a "Remaining Balance" cell, type: <strong>=Salary - TotalExpenses</strong></li>
+                            <li>Format all amounts as Currency (Home → Number → Currency)</li>
+                            <li>Use <strong>Conditional Formatting</strong> (Home → Conditional Formatting → Highlight
+                                Rules) to color the balance RED if it's negative</li>
+                            <li>Create a <strong>Pie Chart</strong> to show how your expenses are distributed</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h3>📝 Exercise 3 – Sales Report with Ranking</h3>
+                <div class="example-box">
+                    <span class="tip-icon">🏅</span>
+                    <div>
+                        <p><strong>Task:</strong> Create a sales report for 6 salespeople over 3 months.</p>
+                        <ol style="margin:8px 0 0 20px; font-size:.9rem;">
+                            <li>Headers: <code>Salesperson | Jan | Feb | Mar | Total | Average | Status</code></li>
+                            <li>Add 6 salesperson names and fill in monthly sales figures</li>
+                            <li>Column E (Total): <strong>=SUM(B2:D2)</strong></li>
+                            <li>Column F (Average): <strong>=AVERAGE(B2:D2)</strong></li>
+                            <li>Column G (Status): <strong>=IF(E2&gt;=100000,"Top Performer","Needs
+                                    Improvement")</strong></li>
+                            <li>Sort the data by Total (largest to smallest) using Data → Sort</li>
+                            <li>Create a <strong>Column Chart</strong> comparing the 6 salespeople by Total sales</li>
+                            <li>Format the "Total" column as Currency</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h3>✅ Checklist Before Applying for a Job</h3>
+                <div class="excel-table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Skill</th>
+                                <th>Can I do this?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Navigate the Excel interface confidently</td>
+                                <td>☐ Not yet &nbsp; ☐ Yes!</td>
+                            </tr>
+                            <tr>
+                                <td>Enter and edit data in cells</td>
+                                <td>☐ Not yet &nbsp; ☐ Yes!</td>
+                            </tr>
+                            <tr>
+                                <td>Use SUM, AVERAGE, COUNT, IF formulas</td>
+                                <td>☐ Not yet &nbsp; ☐ Yes!</td>
+                            </tr>
+                            <tr>
+                                <td>Format cells (bold, color, borders, number format)</td>
+                                <td>☐ Not yet &nbsp; ☐ Yes!</td>
+                            </tr>
+                            <tr>
+                                <td>Sort a list alphabetically or by number</td>
+                                <td>☐ Not yet &nbsp; ☐ Yes!</td>
+                            </tr>
+                            <tr>
+                                <td>Apply a filter to show specific data</td>
+                                <td>☐ Not yet &nbsp; ☐ Yes!</td>
+                            </tr>
+                            <tr>
+                                <td>Create a basic chart from data</td>
+                                <td>☐ Not yet &nbsp; ☐ Yes!</td>
+                            </tr>
+                            <tr>
+                                <td>Know the most common keyboard shortcuts</td>
+                                <td>☐ Not yet &nbsp; ☐ Yes!</td>
+                            </tr>
+                            <tr>
+                                <td>Save a file and manage workbooks</td>
+                                <td>☐ Not yet &nbsp; ☐ Yes!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Quiz -->
+                <div class="quiz-box">
+                    <h3>🧠 Final Check – Lesson 7</h3>
+                    <div class="quiz-q">In Exercise 3, the formula =IF(E2>=100000,"Top Performer","Needs Improvement") —
+                        what does this formula check?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Whether the salesperson's name is
+                            valid</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, true)">Whether the total sales in E2 is
+                            100,000 or more</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Whether February sales are higher
+                            than January</button>
+                        <button class="quiz-opt" onclick="checkAnswer(this, false)">Whether the average is above
+                            50,000</button>
+                    </div>
+                    <div class="quiz-result" id="qr6"></div>
+                </div>
+
+                <button class="mark-done-btn" onclick="markDone(this, 7)">✔ Mark Lesson 7 Complete</button>
+            </article>
+
+            <!-- ══ CERTIFICATE ══ -->
+            <div id="certificate">
+                <div style="font-size:3rem">🏆</div>
+                <h2>Certificate of Completion</h2>
+                <p>This certifies that</p>
+                <div class="cert-name" id="certName">You</div>
+                <p>has successfully completed all 7 lessons of</p>
+                <p style="font-size:1.2rem; font-weight:700; color: var(--green); margin:8px 0;">Master Excel – From
+                    Zero to Work-Ready</p>
+                <p style="color:var(--muted); margin-top:12px">📅 Completed: <span id="certDate"></span></p>
+                <br>
+                <p>You are now equipped with the Excel skills needed for the modern workplace. Keep practicing and you
+                    will keep improving!</p>
+                <br>
+                <button onclick="printCert()"
+                    style="background:var(--green);color:#fff;border:none;padding:12px 28px;border-radius:30px;font-size:1rem;font-weight:700;cursor:pointer;">🖨️
+                    Print Certificate</button>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <footer>
+        <p>Made with ❤️ for <strong>my cousin</strong> — you've got this! 💪</p>
+        <p style="margin-top:6px">Practice every day, even just 15 minutes. Consistency beats perfection.</p>
+    </footer>
+
+    <script>
+        /* ── Progress ── */
+        const TOTAL = 7;
+        const completed = new Set();
+
+        function buildDots() {
+            const wrap = document.getElementById('progDots');
+            for (let i = 1; i <= TOTAL; i++) {
+                const d = document.createElement('div');
+                d.className = 'step-dot';
+                d.id = 'dot' + i;
+                d.textContent = i;
+                d.title = 'Lesson ' + i;
+                d.onclick = () => document.getElementById('lesson' + i).scrollIntoView({ behavior: 'smooth' });
+                wrap.appendChild(d);
+            }
+        }
+
+        function updateProgress() {
+            const pct = Math.round((completed.size / TOTAL) * 100);
+            document.getElementById('progFill').style.width = pct + '%';
+            document.getElementById('pct').textContent = pct + '% Complete';
+            for (let i = 1; i <= TOTAL; i++) {
+                const d = document.getElementById('dot' + i);
+                d.className = 'step-dot' + (completed.has(i) ? ' done' : '');
+            }
+            if (completed.size === TOTAL) showCertificate();
+        }
+
+        function markDone(btn, lessonNum) {
+            if (completed.has(lessonNum)) return;
+            completed.add(lessonNum);
+            btn.textContent = '✅ Lesson ' + lessonNum + ' Completed!';
+            btn.classList.add('done-state');
+            btn.disabled = true;
+            updateProgress();
+        }
+
+        /* ── Quiz ── */
+        let quizCount = 0;
+        function checkAnswer(btn, isCorrect) {
+            const opts = btn.parentElement.querySelectorAll('.quiz-opt');
+            opts.forEach(o => { o.disabled = true; o.style.pointerEvents = 'none'; });
+            const idx = quizCount++;
+            const resultEl = btn.parentElement.nextElementSibling;
+            if (isCorrect) {
+                btn.classList.add('correct');
+                resultEl.textContent = '🎉 Correct! Well done!';
+                resultEl.className = 'quiz-result show pass';
+            } else {
+                btn.classList.add('wrong');
+                opts.forEach(o => { if (o.onclick.toString().includes('true')) o.classList.add('correct'); });
+                resultEl.textContent = '❌ Not quite — the correct answer is highlighted in green. Review this section and try again next time!';
+                resultEl.className = 'quiz-result show fail';
+            }
+        }
+
+        /* ── Certificate ── */
+        function showCertificate() {
+            const cert = document.getElementById('certificate');
+            cert.style.display = 'block';
+            document.getElementById('certDate').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            cert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function printCert() { window.print(); }
+
+        /* ── Init ── */
+        buildDots();
+        updateProgress();
+    </script>
+</body>
+
+</html>
