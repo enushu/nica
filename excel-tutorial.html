@@ -340,6 +340,87 @@
             scroll-margin-top: 90px;
         }
 
+        .roadmap-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 36px 40px;
+            margin-bottom: 28px;
+            border-top: 4px solid #8b5cf6;
+            scroll-margin-top: 90px;
+        }
+
+        @media(max-width:600px) {
+            .roadmap-card {
+                padding: 24px 20px;
+            }
+        }
+
+        .roadmap-card h2 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #4c1d95;
+            margin-bottom: 10px;
+        }
+
+        .roadmap-card h3 {
+            font-size: 1.08rem;
+            font-weight: 700;
+            margin: 24px 0 10px;
+            color: #5b21b6;
+        }
+
+        .roadmap-card p {
+            margin-bottom: 14px;
+            color: #374151;
+        }
+
+        .roadmap-card ul {
+            padding-left: 22px;
+            margin-bottom: 14px;
+            color: #374151;
+        }
+
+        .roadmap-card li {
+            margin-bottom: 6px;
+        }
+
+        .level-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 14px;
+            margin: 14px 0 8px;
+        }
+
+        .level-item {
+            border: 1px solid #ddd6fe;
+            border-radius: 10px;
+            padding: 14px;
+            background: linear-gradient(135deg, #faf5ff, #ffffff);
+        }
+
+        .level-item h4 {
+            font-size: .95rem;
+            color: #5b21b6;
+            margin-bottom: 6px;
+        }
+
+        .level-item p {
+            font-size: .86rem;
+            margin-bottom: 8px;
+            color: #4b5563;
+        }
+
+        .level-item ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .level-item li {
+            font-size: .83rem;
+            margin-bottom: 4px;
+        }
+
         @media(max-width:600px) {
             .lesson {
                 padding: 24px 20px;
@@ -779,6 +860,7 @@
         <div class="navbar">
             <div class="logo"><span>📗</span> Excel Mastery</div>
             <nav>
+                <a href="#roadmap">Roadmap</a>
                 <a href="#lesson1">Basics</a>
                 <a href="#lesson2">Formulas</a>
                 <a href="#lesson3">Formatting</a>
@@ -825,6 +907,7 @@
         <aside class="sidebar">
             <h4>Lessons</h4>
             <ul>
+                <li><a href="#roadmap"><span class="snum">R</span> 0% → Super Mastery</a></li>
                 <li><a href="#lesson1"><span class="snum">1</span> Excel Basics</a></li>
                 <li><a href="#lesson2"><span class="snum">2</span> Formulas &amp; Functions</a></li>
                 <li><a href="#lesson3"><span class="snum">3</span> Formatting</a></li>
@@ -837,6 +920,184 @@
 
         <!-- ══ CONTENT ══ -->
         <main>
+
+            <!-- ───────────────────────────────── ROADMAP ── -->
+            <section class="roadmap-card" id="roadmap">
+                <h2>🧭 Excel Roadmap: 0% Knowledge → Super Mastery</h2>
+                <p>If you are starting from absolute zero, follow this level path in order. Each level tells you what to
+                    learn, what to practice, and what project proves your skill.</p>
+
+                <div class="excel-table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Level</th>
+                                <th>What You Can Do</th>
+                                <th>Main Topics to Learn</th>
+                                <th>Project to Complete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>L0 — Absolute Beginner</strong></td>
+                                <td>Open Excel and confidently move around sheets.</td>
+                                <td>Workbook/sheet basics, rows/columns/cells, save/open files, typing/editing, basic
+                                    shortcuts.</td>
+                                <td>Create a personal monthly expense sheet with categories and totals.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>L1 — Beginner</strong></td>
+                                <td>Build clean tables and do basic calculations.</td>
+                                <td>SUM, AVERAGE, MIN, MAX, COUNT, AutoFill, table formatting, sorting/filtering,
+                                    freeze panes, print setup.</td>
+                                <td>Build a student marks sheet with totals, averages, and pass/fail status.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>L2 — Strong Beginner</strong></td>
+                                <td>Handle common office tasks without help.</td>
+                                <td>IF, COUNTIF, SUMIF, text functions (LEFT/RIGHT/MID/TRIM), date functions
+                                    (TODAY/EDATE), Data Validation, named ranges.</td>
+                                <td>Build a staff attendance + leave tracker with validation dropdowns.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>L3 — Intermediate Analyst</strong></td>
+                                <td>Analyze medium-size data and create reports.</td>
+                                <td>XLOOKUP, INDEX+MATCH, PivotTables, PivotCharts, advanced conditional formatting,
+                                    subtotals, remove duplicates.</td>
+                                <td>Create a monthly sales dashboard by region, product, and salesperson.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>L4 — Advanced</strong></td>
+                                <td>Build flexible models that update automatically.</td>
+                                <td>Nested formulas, dynamic arrays (FILTER/SORT/UNIQUE/SEQUENCE), What-If Analysis,
+                                    Goal Seek, Scenario Manager, Data Tables.</td>
+                                <td>Build a pricing and profit simulation model with scenario toggles.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>L5 — Automation</strong></td>
+                                <td>Reduce repetitive work and clean messy data fast.</td>
+                                <td>Power Query (import/transform/load), Power Pivot basics, data model
+                                    relationships, basic DAX measures, record/edit macros.</td>
+                                <td>Automate weekly raw CSV cleanup into one reporting table.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>L6 — Expert</strong></td>
+                                <td>Create executive-grade dashboards and optimized files.</td>
+                                <td>KPI dashboard design, slicers/timelines, advanced charting, workbook performance,
+                                    error-handling patterns, protection and collaboration controls.</td>
+                                <td>Build a management dashboard with drill-down views and KPI alerts.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>L7 — Super Mastery</strong></td>
+                                <td>Engineer end-to-end Excel systems for teams.</td>
+                                <td>VBA modules/classes/events, Office Scripts, LAMBDA functions, template systems,
+                                    audit/review standards, enterprise governance.</td>
+                                <td>Build a full automated reporting solution with one-click refresh + export.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>📚 Full Excel Skills Checklist (Everything to Cover)</h3>
+                <p>Use this list as your mastery tracker. Tick each category when you can perform all items without
+                    tutorials.</p>
+
+                <div class="level-grid">
+                    <div class="level-item">
+                        <h4>1) Core Foundations</h4>
+                        <p>Navigation and workbook control</p>
+                        <ul>
+                            <li>Workbooks, worksheets, ranges, tables</li>
+                            <li>Absolute/relative/mixed references</li>
+                            <li>Find/replace, flash fill, fill handle</li>
+                            <li>Page setup, print area, headers/footers</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-item">
+                        <h4>2) Formula Fundamentals</h4>
+                        <p>Daily-use function fluency</p>
+                        <ul>
+                            <li>Math/stat: SUM, AVERAGE, ROUND, COUNT</li>
+                            <li>Logic: IF, IFS, AND, OR, IFERROR</li>
+                            <li>Date/time: TODAY, NOW, EOMONTH, NETWORKDAYS</li>
+                            <li>Text: CONCAT, TEXTJOIN, TRIM, SUBSTITUTE</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-item">
+                        <h4>3) Lookup &amp; Referencing</h4>
+                        <p>Pulling data from anywhere</p>
+                        <ul>
+                            <li>XLOOKUP and XMATCH</li>
+                            <li>INDEX + MATCH patterns</li>
+                            <li>2-way lookups and approximate matches</li>
+                            <li>Structured references in Excel Tables</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-item">
+                        <h4>4) Data Cleaning &amp; Prep</h4>
+                        <p>Preparing reliable datasets</p>
+                        <ul>
+                            <li>Remove duplicates and text-to-columns</li>
+                            <li>Data validation dropdowns and rules</li>
+                            <li>Error checks and quality flags</li>
+                            <li>Power Query transformations</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-item">
+                        <h4>5) Analysis &amp; Reporting</h4>
+                        <p>Finding insights quickly</p>
+                        <ul>
+                            <li>Sort/filter, advanced filter</li>
+                            <li>PivotTables, PivotCharts, slicers</li>
+                            <li>Conditional formatting rule sets</li>
+                            <li>Trend, variance, and contribution analysis</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-item">
+                        <h4>6) Visualization &amp; Dashboards</h4>
+                        <p>Communicating to decision-makers</p>
+                        <ul>
+                            <li>Chart selection and chart hygiene</li>
+                            <li>Dynamic charts with named ranges</li>
+                            <li>KPI cards, scorecards, and summary pages</li>
+                            <li>Interactive dashboard layout design</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-item">
+                        <h4>7) Modeling &amp; Forecasting</h4>
+                        <p>Scenario planning and projections</p>
+                        <ul>
+                            <li>What-If Analysis and Goal Seek</li>
+                            <li>Sensitivity tables and scenarios</li>
+                            <li>Financial functions (NPV, IRR, PMT)</li>
+                            <li>Assumption-driven model structure</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-item">
+                        <h4>8) Automation &amp; Engineering</h4>
+                        <p>Scaling Excel for teams</p>
+                        <ul>
+                            <li>Macro recorder and VBA basics</li>
+                            <li>Office Scripts and scheduled refresh</li>
+                            <li>LAMBDA reusable custom functions</li>
+                            <li>Versioning, protection, audit checklist</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <span class="tip-icon">🎯</span>
+                    <p><strong>How to use this page:</strong> Read this roadmap first, then complete Lessons 1–7 below.
+                        After each lesson, return to this checklist and mark which level you have reached.</p>
+                </div>
+            </section>
 
             <!-- ───────────────────────────────── LESSON 1 ── -->
             <article class="lesson" id="lesson1">
