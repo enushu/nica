@@ -850,6 +850,201 @@
         footer strong {
             color: #fff;
         }
+
+        @media(max-width:320px) {
+            header {
+                padding: 0 8px;
+            }
+
+            .navbar {
+                height: auto;
+                padding: 10px 0;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .logo span {
+                font-size: 1.2rem;
+            }
+
+            nav {
+                width: 100%;
+                gap: 4px;
+            }
+
+            nav a {
+                font-size: .72rem;
+                padding: 5px 8px;
+            }
+
+            .hero {
+                padding: 56px 12px 64px;
+            }
+
+            .hero h1 {
+                font-size: 1.45rem;
+                line-height: 1.3;
+            }
+
+            .hero p {
+                font-size: .9rem;
+                margin-bottom: 20px;
+            }
+
+            .hero-badges {
+                gap: 6px;
+                margin-bottom: 20px;
+            }
+
+            .badge {
+                font-size: .7rem;
+                padding: 5px 10px;
+            }
+
+            .btn-start {
+                font-size: .9rem;
+                padding: 10px 18px;
+                width: 100%;
+                max-width: 260px;
+            }
+
+            .progress-section {
+                padding: 0 10px;
+                margin-top: -20px;
+            }
+
+            .progress-card {
+                padding: 14px 12px;
+                gap: 10px;
+            }
+
+            .progress-card h3 {
+                font-size: .9rem;
+            }
+
+            .prog-label {
+                font-size: .72rem;
+            }
+
+            .step-dot {
+                width: 24px;
+                height: 24px;
+                font-size: .62rem;
+            }
+
+            .main-wrap {
+                margin: 24px auto;
+                padding: 0 10px;
+                gap: 16px;
+            }
+
+            .lesson,
+            .roadmap-card {
+                padding: 18px 12px;
+                border-radius: 12px;
+            }
+
+            .lesson-header {
+                gap: 10px;
+                margin-bottom: 14px;
+            }
+
+            .lesson-icon {
+                font-size: 1.6rem;
+            }
+
+            .lesson h2,
+            .roadmap-card h2 {
+                font-size: 1.1rem;
+            }
+
+            .lesson h3,
+            .roadmap-card h3 {
+                font-size: .95rem;
+            }
+
+            .lesson p,
+            .roadmap-card p,
+            .lesson li,
+            .roadmap-card li {
+                font-size: .88rem;
+            }
+
+            .formula,
+            .tip,
+            .warn,
+            .example-box,
+            .quiz-box {
+                padding: 12px;
+            }
+
+            table {
+                font-size: .76rem;
+            }
+
+            th,
+            td {
+                padding: 8px 10px;
+            }
+
+            .formula-grid,
+            .shortcut-grid,
+            .level-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-item {
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .step-item::before {
+                min-width: 24px;
+                height: 24px;
+                font-size: .75rem;
+            }
+
+            .quiz-box h3 {
+                font-size: .95rem;
+                margin-bottom: 12px;
+            }
+
+            .quiz-q,
+            .quiz-opt,
+            .quiz-result {
+                font-size: .84rem;
+            }
+
+            .mark-done-btn {
+                width: 100%;
+                justify-content: center;
+                font-size: .84rem;
+                padding: 10px 12px;
+            }
+
+            #certificate {
+                padding: 24px 14px;
+            }
+
+            #certificate h2 {
+                font-size: 1.3rem;
+            }
+
+            #certificate .cert-name {
+                font-size: 1.15rem;
+            }
+
+            footer {
+                padding: 20px 12px;
+                font-size: .78rem;
+                margin-top: 32px;
+            }
+        }
     </style>
 </head>
 
@@ -1168,7 +1363,8 @@
                     </div>
                     <div class="step-item">
                         <p>Press <kbd>Tab</kbd> to move <strong>right</strong>, or <kbd>Enter</kbd> to move
-                            <strong>down</strong> to the next cell.</p>
+                            <strong>down</strong> to the next cell.
+                        </p>
                     </div>
                     <div class="step-item">
                         <p>Use <kbd>Arrow Keys</kbd> ← ↑ → ↓ to move one cell at a time in any direction.</p>
@@ -1196,7 +1392,8 @@
                 <ul>
                     <li>Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save at any time — do this often!</li>
                     <li>First-time save: choose <em>Save As</em> → pick a folder → type a file name → click
-                        <strong>Save</strong>.</li>
+                        <strong>Save</strong>.
+                    </li>
                     <li>Format: Always save as <strong>.xlsx</strong> (Excel Workbook) unless told otherwise.</li>
                 </ul>
 
@@ -1558,7 +1755,8 @@
                     </div>
                     <div class="step-item">
                         <p>To <strong>remove the filter</strong> and show all rows again, press <kbd>Ctrl</kbd> +
-                            <kbd>Shift</kbd> + <kbd>L</kbd> again.</p>
+                            <kbd>Shift</kbd> + <kbd>L</kbd> again.
+                        </p>
                     </div>
                 </div>
 
@@ -1803,7 +2001,8 @@
                         <p style="margin-top:8px"><strong>Steps:</strong></p>
                         <ol style="margin:8px 0 0 20px; font-size:.9rem;">
                             <li>In Row 1, type headers:
-                                <code>Employee Name | Mon | Tue | Wed | Thu | Fri | Total Days Present</code></li>
+                                <code>Employee Name | Mon | Tue | Wed | Thu | Fri | Total Days Present</code>
+                            </li>
                             <li>Add 5 employee names in column A (rows 2–6)</li>
                             <li>Fill in <code>1</code> for Present and <code>0</code> for Absent for each day</li>
                             <li>In column G (Total Days Present), use <strong>=SUM(B2:F2)</strong> for each employee
